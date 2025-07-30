@@ -75,7 +75,7 @@ class UserController extends Controller
                     'id_contact' => $contact->id
                 ]
             ));
-            return response()->json($user->load('contact', 'role', 'boutiques'), 201);
+            return response()->json($user->load('contact', 'role'), 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Erreur lors de la création de l\'utilisateur',
