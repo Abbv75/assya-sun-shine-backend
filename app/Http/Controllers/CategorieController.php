@@ -23,8 +23,6 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         try {
-            $currentBoutique = $request->attributes->get('currentBoutique');
-
             $validator = Validator::make($request->all(), [
                 'nom' => 'required',
             ]);
@@ -35,12 +33,7 @@ class CategorieController extends Controller
                 ], 422);
             }
 
-            $data = Categorie::create(array_merge(
-                $request->all(),
-                [
-                    'id_boutique' => $currentBoutique->id
-                ]
-            ));
+            $data = Categorie::create($request->all());
 
             return response()->json($data, 201);
         } catch (\Throwable $th) {
