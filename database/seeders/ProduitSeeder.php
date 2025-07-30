@@ -26,7 +26,7 @@ class ProduitSeeder extends Seeder
                 'prixAchat' => $prix,
                 'prixVenteDetails' => $prix * 1.5,
                 'prixVenteEngros' => $prix * 1.1,
-                'quantite' => $faker->numberBetween(0, 200) * 0,
+                'quantite' => $faker->numberBetween(0, 200),
                 'id_categorie' => Categorie::inRandomOrder()->first()->id,
             ]);
 
