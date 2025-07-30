@@ -30,7 +30,7 @@ class ProduitSeeder extends Seeder
                 'id_categorie' => Categorie::inRandomOrder()->first()->id,
             ]);
 
-            for ($i = 0; $i < 10; $i++) {
+            for ($j = 0; $j < $faker->numberBetween(0, 10); $j++) {
                 ProduitImage::create([
                     'file' => 'produit/image/' . rand(0, 1) == 1 ? 'img1.png' : 'img2.jpg',
                     'id_produit' => $produit->id,
