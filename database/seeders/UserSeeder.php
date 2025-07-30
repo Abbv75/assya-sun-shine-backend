@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
                 'nomComplet' => $faker->name,
                 'login' => $faker->unique()->userName(),
                 'password' => bcrypt(12345678),
-                'id_role' => rand(2, 3),
+                'id_role' => 1,
                 'id_contact' => $contact->id,
             ]);
         }

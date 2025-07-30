@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreignId("id_role")->constrained("roles")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId("id_contact")->nullable()->constrained("contacts")->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreignId("id_contact")->constrained("contacts")->restrictOnDelete()->cascadeOnUpdate();
         });
     }
 
