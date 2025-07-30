@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Boutique;
 use App\Models\Client;
 use App\Models\Contact;
 use App\Models\Produit;
@@ -19,45 +18,41 @@ class VenteSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        $boutiques = Boutique::all();
 
-        foreach ($boutiques as $boutique) {
-            for ($i = 0; $i < 5; $i++) {
-                $contact = Contact::create([
-                    'telephone' => $faker->phoneNumber,
-                    'email' => rand(0, 1) == 0 ? $faker->unique()->email() : null,
-                    'address' => rand(0, 1) == 0 ? $faker->address() : null,
-                    'whatsapp' => rand(0, 1) == 0 ? $faker->phoneNumber() : null,
+        for ($i = 0; $i < 5; $i++) {
+            $contact = Contact::create([
+                'telephone' => $faker->phoneNumber,
+                'email' => $faker->optional(0.5)->email(),
+                'address' => $faker->optional(0.5)->address(),
+                'whatsapp' => $faker->optional(0.5)->phoneNumber(),
+            ]);
+
+            $client = Client::create([
+                'nomComplet' => $faker->lastName . ' ' . $faker->firstName,
+                'id_contact' => $contact->id
+            ]);
+
+            $vente = Vente::create([
+                'id_client' => $client->id
+            ]);
+
+            $montant = 0;
+
+            for ($i = 0; $i < rand(1, 5); $i++) {
+                $produit = Produit::inRandomOrder()->first();
+
+                VenteProduit::create([
+                    'montant' => $produit->prixVenteDetails,
+                    'quantite' => rand(1, 15),
+                    'id_produit' => $produit->id,
+                    'id_vente' => $vente->id
                 ]);
 
-                $client = Client::create([
-                    'nomComplet' => $faker->lastName . ' ' . $faker->firstName,
-                    'id_contact' => $contact->id
-                ]);
-
-                $vente = Vente::create([
-                    'id_boutique' => $boutique->id,
-                    'id_client' => $client->id
-                ]);
-
-                $montant = 0;
-
-                for ($i = 0; $i < rand(1, 5); $i++) {
-                    $produit = Produit::inRandomOrder()->first();
-
-                    VenteProduit::create([
-                        'montant' => $produit->prixVenteDetails,
-                        'quantite' => rand(1, 15),
-                        'id_produit' => $produit->id,
-                        'id_vente' => $vente->id
-                    ]);
-
-                    $montant += $produit->prixVenteDetails;
-                }
-
-                $vente->montant = $montant;
-                $vente->save();
+                $montant += $produit->prixVenteDetails;
             }
+
+            $vente->montant = $montant;
+            $vente->save();
         }
     }
 }

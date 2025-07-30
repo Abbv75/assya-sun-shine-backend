@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('nom');
             $table->string('description')->nullable();
             $table->timestamps();
-
-            $table->foreignId("id_boutique")->constrained("boutiques")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

@@ -32,27 +32,12 @@ class UserSeeder extends Seeder
             'id_contact' => $contact->id,
         ]);
 
-        $contact = Contact::create([
-            'telephone' => '82641937',
-            'email' => 'bore.younous@outlook.fr',
-            'address' => 'Bamako',
-            'whatsapp' => '+22382641937',
-        ]);
-
-        User::create([
-            'nomComplet' => 'Sounkalo sidibe',
-            'login' => 'sounk',
-            'password' => bcrypt(12345678),
-            'id_role' => 2,
-            'id_contact' => $contact->id,
-        ]);
-
         for ($i = 0; $i < 10; $i++) {
             $contact = Contact::create([
                 'telephone' => $faker->phoneNumber,
-                'email' => rand(0, 1) == 0 ? $faker->unique()->email() : null,
-                'address' => rand(0, 1) == 0 ? $faker->address() : null,
-                'whatsapp' => rand(0, 1) == 0 ? $faker->phoneNumber() : null,
+                'email' =>  $faker->optional(0.5)->email(),
+                'address' =>  $faker->optional(0.5)->address(),
+                'whatsapp' =>  $faker->optional(0.5)->phoneNumber(),
             ]);
 
             User::create([

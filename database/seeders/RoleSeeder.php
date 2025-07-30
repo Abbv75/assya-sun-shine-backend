@@ -19,31 +19,6 @@ class RoleSeeder extends Seeder
                 'nom' => 'admin',
                 'description' => 'Administrateur du système',
             ],
-            [
-                'id' => 2,
-                'nom' => 'propriétaire',
-                'description' => 'Propriétaire de boutique',
-            ],
-            [
-                'id' => 3,
-                'nom' => 'mobile user',
-                'description' => 'Utilisateur mobile',
-            ],
-            [
-                'id' => 4,
-                'nom' => 'vendeur',
-                'description' => 'Vendeur dans les boutiques',
-            ],
-            [
-                'id' => 5,
-                'nom' => 'livreur',
-                'description' => 'Livreur de la plateforme',
-            ],
-            [
-                'id' => 6,
-                'nom' => 'super admin',
-                'description' => 'Super administrateur du système',
-            ],
         ];
 
         foreach ($roles as $role) {
