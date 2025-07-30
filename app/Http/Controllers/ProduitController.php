@@ -44,8 +44,6 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
         try {
-            $currentBoutique = $request->attributes->get('currentBoutique');
-
             $validator = Validator::make($request->all(), [
                 'nom' => 'required',
                 'prixAchat' => 'required|numeric|min:0',
@@ -63,10 +61,7 @@ class ProduitController extends Controller
                 ], 422);
             }
 
-            $produit = Produit::create(array_merge(
-                $request->all(),
-                ['id_boutique' => $currentBoutique->id]
-            ));
+            $produit = Produit::create($request->all());
 
             if (isset($request->images)) {
                 foreach ($request->images as $image) {
@@ -91,11 +86,7 @@ class ProduitController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $currentBoutique = $request->attributes->get('currentBoutique');
-
-            $produit = Produit::where('id', $id)
-                ->where('id_boutique', $currentBoutique->id)
-                ->first();
+            $produit = Produit::where('id', $id)->first();
 
             if (!$produit) {
                 return response()->json([
@@ -119,7 +110,7 @@ class ProduitController extends Controller
 
             $produit->update($request->all());
 
-            return response()->json($produit, 200);
+            return $produit;
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),
