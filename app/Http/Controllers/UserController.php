@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         try {
-            return User::with('contact', 'role', 'boutiques')->get();
+            return User::with('contact', 'role')->get();
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Erreur lors de la récupération des utilisateurs',
@@ -34,7 +34,7 @@ class UserController extends Controller
                 );
             }
 
-            return $user->load('contact', 'role', 'boutiques');
+            return $user->load('contact', 'role');
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Erreur lors de la récupération de l\'utilisateur',
@@ -49,7 +49,7 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'nomComplet' => 'required',
                 'login' => 'required|unique:users',
-                'password' => 'required|string|min:8',
+                'password' => 'required|string',
                 'id_role' => 'required|exists:roles,id',
                 'telephone' => 'required',
             ]);
@@ -89,7 +89,7 @@ class UserController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'login' => 'nullable|unique:users,login,' . $id,
-                'password' => 'nullable|string|min:8',
+                'password' => 'nullable|string',
             ]);
 
             if ($validator->fails()) {
@@ -120,7 +120,7 @@ class UserController extends Controller
                 ]
             ));
 
-            return response()->json($user->load('contact', 'role', 'boutiques'), 200);
+            return response()->json($user->load('contact', 'role'), 200);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Erreur lors de la mise à jour de l\'utilisateur',
@@ -180,7 +180,7 @@ class UserController extends Controller
                 ], 401);
             }
 
-            return $user->load('contact', 'role', 'boutiques');
+            return $user->load('contact', 'role');
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Erreur lors de la connexion',
