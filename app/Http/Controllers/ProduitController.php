@@ -12,10 +12,7 @@ class ProduitController extends Controller
     public function index()
     {
         try {
-            $boutique = request()->attributes->get('currentBoutique');
-            return Produit::with('images', 'categorie')
-                ->where('id_boutique', $boutique->id)
-                ->get();
+            return Produit::with('images', 'categorie')->get();
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),

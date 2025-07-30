@@ -87,11 +87,10 @@ class DocumentationController extends Controller
      *     type="object",
      *     title="Categorie",
      *     description="Categorie model",
-     *     required={"id", "nom", "id_boutique"},
+     *     required={"id", "nom"},
      *     @OA\Property(property="id", type="integer"),
      *     @OA\Property(property="nom", type="string"),
      *     @OA\Property(property="description", type="string"),
-     *     @OA\Property(property="id_boutique", type="integer"),
      * )
      * 
      * @OA\Schema(
@@ -99,14 +98,13 @@ class DocumentationController extends Controller
      *    type="object",
      *    title="Produit",
      *    description="Produit model",
-     *    required={"id", "nom", "prixAchat", "prixVenteDetails", "prixVenteEngros", "quantite", "id_boutique"},
+     *    required={"id", "nom", "prixAchat", "prixVenteDetails", "prixVenteEngros", "quantite"},
      *    @OA\Property(property="id", type="integer"),
      *    @OA\Property(property="nom", type="string"),
      *    @OA\Property(property="prixAchat", type="number", format="float"),
      *    @OA\Property(property="prixVenteDetails", type="number", format="float"),
      *    @OA\Property(property="prixVenteEngros", type="number", format="float"),
      *    @OA\Property(property="quantite", type="integer"),
-     *    @OA\Property(property="id_boutique", type="integer"),
      *    @OA\Property(property="id_categorie", type="integer"),
      *    @OA\Property(property="images", type="array", @OA\Items(ref="#/components/schemas/ProduitImage")),
      *    @OA\Property(property="categorie", ref="#/components/schemas/Categorie"),
@@ -328,500 +326,11 @@ class DocumentationController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/type_abonnements",
-     *     tags={"TypeAbonnement"},
-     *     summary="recuperer tous les types d'abonnements",
-     *     description="Recuperer tous les types d'abonnements",
-     *     operationId="getTypeAbonnements",
-     *     @OA\Response(
-     *         response=200,
-     *         description="List of type abonnements",
-     *         @OA\JsonContent(
-     *               type="array",
-     *               @OA\Items(ref="#/components/schemas/TypeAbonnement")
-     *         )
-     *     )
-     * )
-     *
-     * @OA\Get(
-     *     path="/api/type_abonnements/{id}",
-     *     tags={"TypeAbonnement"},
-     *     summary="recuperer un type d'abonnement",
-     *     description="Recuperer un type d'abonnement",
-     *     operationId="getTypeAbonnementById",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID du type d'abonnement",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Type abonnement",
-     *         @OA\JsonContent(ref="#/components/schemas/TypeAbonnement")
-     *     )
-     * )
-     *
-     * @OA\Post(
-     *     path="/api/type_abonnements",
-     *     tags={"TypeAbonnement"},
-     *     summary="Créer un type d'abonnement",
-     *     description="Créer un type d'abonnement",
-     *     operationId="createTypeAbonnement",
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/TypeAbonnement")
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Type abonnement créé",
-     *         @OA\JsonContent(ref="#/components/schemas/TypeAbonnement")
-     *     )
-     * )
-     *
-     * @OA\Put(
-     *     path="/api/type_abonnements/{id}",
-     *     tags={"TypeAbonnement"},
-     *     summary="Mettre à jour un type d'abonnement",
-     *     description="Mettre à jour un type d'abonnement",
-     *     operationId="updateTypeAbonnement",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID du type d'abonnement",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/TypeAbonnement")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Type abonnement mis à jour",
-     *         @OA\JsonContent(ref="#/components/schemas/TypeAbonnement")
-     *     )
-     * )
-     *
-     * @OA\Delete(
-     *     path="/api/type_abonnements/{id}",
-     *     tags={"TypeAbonnement"},
-     *     summary="Supprimer un type d'abonnement",
-     *     description="Supprimer un type d'abonnement",
-     *     operationId="deleteTypeAbonnement",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID du type d'abonnement",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Type abonnement supprimé"
-     *     )
-     * )
-     */
-    public function typeAbonnement() {}
-
-    /**
-     * @OA\Get(
-     *     path="/api/boutiques",
-     *     tags={"Boutique"},
-     *     summary="Recuperer la liste des boutiques",
-     *     description="Recuperer la liste des boutiques",
-     *     @OA\Response(
-     *         response=200,
-     *         description="A list of boutiques",
-     *         @OA\JsonContent(
-     *             type="array",
-     *            @OA\Items(ref="#/components/schemas/Boutique")
-     *         )
-     *     ),
-     * )
-     *
-     * @OA\Get(
-     *     path="/api/boutiques/{id}",
-     *     tags={"Boutique"},
-     *     summary="Recuperer une boutique",
-     *     description="Recuperer une boutique",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la boutique",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="La boutique a été récupérée avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/Boutique")
-     *     ),
-     * )
-     *
-     * @OA\Post(
-     *     path="/api/boutiques",
-     *     summary="Créer une nouvelle boutique",
-     *     description="Créer une boutique avec option de lier un utilisateur existant ou d'en créer un nouveau",
-     *     operationId="storeBoutique",
-     *     tags={"Boutique"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"boutique"},
-     *             @OA\Property(
-     *                 property="boutique",
-     *                 type="object",
-     *                 required={"nom", "isPartenaire", "telephone"},
-     *                 @OA\Property(property="nom", type="string", example="Boutique Paris"),
-     *                 @OA\Property(property="image", type="string", format="binary"),
-     *                 @OA\Property(property="nbrMoisAbonnement", type="integer", example=4),
-     *                 @OA\Property(property="isPartenaire", type="boolean", example=true),
-     *                 @OA\Property(property="typeAbonnement", type="integer", example=1),
-     *                 @OA\Property(property="pourcentageProduit", type="number", format="float", example=15.5),
-     *                 @OA\Property(property="telephone", type="string", example="+33612345678"),
-     *                 @OA\Property(property="email", type="string", format="email", example="contact@boutique.com"),
-     *                 @OA\Property(property="address", type="string", example="123 rue de Paris"),
-     *                 @OA\Property(property="whatsapp", type="string", example="+33612345678")
-     *             ),
-     *             @OA\Property(
-     *                 property="user",
-     *                 type="object",
-     *                 description="Données utilisateur si création d'un nouvel utilisateur",
-     *                 @OA\Property(property="nomComplet", type="string", example="Jean Dupont"),
-     *                 @OA\Property(property="login", type="string", example="jeandupont"),
-     *                 @OA\Property(property="password", type="string", format="password", example="Motdepasse123"),
-     *                 @OA\Property(property="telephone", type="string", example="+33698765432"),
-     *                 @OA\Property(property="email", type="string", format="email", example="jean@example.com"),
-     *                 @OA\Property(property="address", type="string", example="456 avenue de Lyon"),
-     *                 @OA\Property(property="whatsapp", type="string", example="+33698765432")
-     *             ),
-     *             @OA\Property(
-     *                 property="id_user",
-     *                 type="integer",
-     *                 nullable=true,
-     *                 description="ID d'un utilisateur existant si pas de création d'utilisateur",
-     *                 example=5
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Boutique créée avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/Boutique")
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Erreur de validation",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Validation échouée"),
-     *             @OA\Property(property="errors", type="object")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Erreur serveur",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Une erreur est survenue lors de la création de la boutique"),
-     *             @OA\Property(property="error", type="string")
-     *         )
-     *     )
-     * )
-     *
-     * @OA\Post(
-     *     path="/api/boutiques/{id}",
-     *     tags={"Boutique"},
-     *     summary="Mettre à jour une boutique",
-     *     description="Mettre à jour une boutique",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la boutique",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"nom", "telephone"},
-     *             @OA\Property(property="nom", type="string", example="Boutique 1"),
-     *             @OA\Property(property="image", type="string", format="binary"),
-     *             @OA\Property(property="pourcentageProduit", type="number", format="float", example=15.5),
-     *             @OA\Property(property="debutAbonnement", type="string", format="date-time", example="2025-04-27T14:00:00Z"),
-     *             @OA\Property(property="finAbonnement", type="string", format="date-time", example="2025-10-27T14:00:00Z"),
-     *             @OA\Property(property="telephone", type="string", example="+123456789"),
-     *             @OA\Property(property="email", type="string", example="bore.younous59@gmail.com"),
-     *             @OA\Property(property="address", type="string", example="123 Rue de la Paix"),
-     *             @OA\Property(property="whatsapp", type="string", example="+123456789"),
-     *         ),
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="La boutique a été mise à jour avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/Boutique")
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation échouée",
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Boutique non trouvée",
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Erreur interne du serveur",
-     *     ),
-     * )
-     *
-     * @OA\Delete(
-     *     path="/api/boutiques/{id}",
-     *     tags={"Boutique"},
-     *     summary="Supprimer une boutique",
-     *     description="Supprimer une boutique",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la boutique",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="La boutique a été supprimée avec succès",
-     *     ),
-     * )
-     *
-     * @OA\Post(
-     *     path="/api/boutiques/renouvellerAbonnement/{id}",
-     *     tags={"Boutique"},
-     *     summary="Renouveler l'abonnement d'une boutique",
-     *     description="Renouveler l'abonnement d'une boutique",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la boutique",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"nbrMoisAbonnement"},
-     *             @OA\Property(property="nbrMoisAbonnement", type="integer", example=6)
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="L'abonnement a été renouvelé avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/Boutique")
-     *     ),
-     * )
-     *
-     * @OA\Post(
-     *     path="/api/boutiques/resilierAbonnement/{id}",
-     *     tags={"Boutique"},
-     *     summary="Annuler l'abonnement d'une boutique",
-     *     description="Annuler l'abonnement d'une boutique",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la boutique",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="L'abonnement a été resilier avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/Boutique")
-     *     ),
-     * )
-     *
-     * @OA\Get(
-     *     path="/api/boutiques/image/{image}",
-     *     tags={"Boutique"},
-     *     summary="Récupérer l'image d'une boutique",
-     *     description="Récupérer l'image d'une boutique",
-     *     @OA\Parameter(
-     *         name="image",
-     *         in="path",
-     *         required=true,
-     *         description="nom de l'image",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="L'image a été récupérée avec succès",
-     *         @OA\MediaType(
-     *             mediaType="image/jpeg"
-     *         )
-     *     ),
-     * )
-     *
-     * @OA\Get(
-     *     path="/api/boutiques/proprietaire/{id}",
-     *     tags={"Boutique"},
-     *     summary="Récupérer le propriétaire d'une boutique",
-     *     description="Récupérer le propriétaire d'une boutique",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la boutique",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Le propriétaire a été récupéré avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     ),
-     * )
-     */
-    public function boutique() {}
-
-    /**
-     * @OA\Get(
-     *     path="/api/employer",
-     *     tags={"Employer"},
-     *     summary="les employers d'une boutiques",
-     *     description="Recuperer les employers d'une boutiques",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Les employers ont été récupérée avec succès",
-     *         @OA\JsonContent(
-     *            type="array",
-     *            @OA\Items(ref="#/components/schemas/User")
-     *         )
-     *     ),
-     * )
-     * 
-     * @OA\Post(
-     *     path="/api/employer",
-     *     tags={"Employer"},
-     *     summary="Créer un employer",
-     *     description="Créer un employer avec son contact et son rôle en fonction d'une boutique",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 required={"nomComplet", "login", "password", "id_role", "telephone"},
-     *                 @OA\Property(property="nomComplet", type="string"),
-     *                 @OA\Property(property="login", type="string"),
-     *                 @OA\Property(property="password", type="string"),
-     *                 @OA\Property(property="id_role", type="integer"),
-     *                 @OA\Property(property="telephone", type="string"),
-     *                 @OA\Property(property="address", type="string"),
-     *                 @OA\Property(property="email", type="string"),
-     *                 @OA\Property(property="whatsapp", type="string")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Employer créé avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     )
-     * )
-     * 
-     * @OA\Put(
-     *     path="/api/employer/{id}",
-     *     tags={"Employer"},
-     *     summary="Modifier un employer",
-     *     description="Modifier un employer avec son contact et son rôle en fonction d'une boutique",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID de la boutique courante",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de l'employer'",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(property="nomComplet", type="string"),
-     *                 @OA\Property(property="login", type="string"),
-     *                 @OA\Property(property="password", type="string"),
-     *                 @OA\Property(property="id_role", type="integer"),
-     *                 @OA\Property(property="telephone", type="string"),
-     *                 @OA\Property(property="address", type="string"),
-     *                 @OA\Property(property="email", type="string"),
-     *                 @OA\Property(property="whatsapp", type="string")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Employer Modifier avec succès",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     )
-     * )
-     * 
-     * @OA\Delete(
-     *     path="/api/employer/{id}",
-     *     tags={"Employer"},
-     *     summary="Supprimer un employer",
-     *     description="Supprimer un employer avec son contact",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID de la boutique courante",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de l'employer'",
-     *         @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Employer Supprimer avec succès",
-     *     )
-     * )
-     */
-    public function employer() {}
-
-    /**
-     * @OA\Get(
      *     path="/api/categorie",
      *     tags={"Categorie"},
      *     summary="recuperer tous les categories",
      *     description="Recuperer tous les types de categorie",
      *     operationId="getCategorie",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="List of type categories",
@@ -837,13 +346,6 @@ class DocumentationController extends Controller
      *     tags={"Categorie"},
      *     summary="Suppresion dune categorie",
      *     description="Suppresion dune categorie",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID de la boutique courante",
-     *         @OA\Schema(type="integer")
-     *     ),
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -862,13 +364,6 @@ class DocumentationController extends Controller
      *     tags={"Categorie"},
      *     summary="Créer une categorie",
      *     description="Créer une categorie",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\MediaType(
@@ -892,13 +387,6 @@ class DocumentationController extends Controller
      *     tags={"Categorie"},
      *     summary="Modifie une categorie",
      *     description="Modifie une categorie",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -933,13 +421,6 @@ class DocumentationController extends Controller
      *     summary="recuperer tous les produits",
      *     description="Recuperer tous les types de produit",
      *     operationId="getProduit",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
      *    @OA\Response(
      *        response=200,
      *        description="List of type produits",
@@ -955,13 +436,6 @@ class DocumentationController extends Controller
      *   tags={"Produit"},
      *   summary="recuperer un produit",
      *   description="Recuperer un produit",
-     *   @OA\Parameter(
-     *       name="currentboutique",
-     *       in="header",
-     *       required=true,
-     *       description="ID ou code de la boutique courante",
-     *       @OA\Schema(type="string")
-     *   ),
      *   @OA\Parameter(
      *       name="id",
      *       in="path",
@@ -981,13 +455,6 @@ class DocumentationController extends Controller
      *    tags={"Produit"},
      *    summary="Créer un produit",
      *    description="Créer un produit",
-     *    @OA\Parameter(
-     *          name="currentboutique",
-     *          in="header",
-     *          required=true,
-     *          description="ID ou code de la boutique courante",
-     *          @OA\Schema(type="string")
-     *     ),
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\MediaType(
@@ -1017,13 +484,6 @@ class DocumentationController extends Controller
      *      tags={"Produit"},
      *      summary="Modifier un produit",
      *      description="Modifier un produit",
-     *      @OA\Parameter(
-     *          name="currentboutique",
-     *          in="header",
-     *          required=true,
-     *          description="ID ou code de la boutique courante",
-     *          @OA\Schema(type="string")
-     *      ),
      *      @OA\Parameter(
      *          name="id",
      *          in="path",
@@ -1060,13 +520,6 @@ class DocumentationController extends Controller
      *     summary="Supprimer un produit",
      *     description="Supprimer un produit",
      *     @OA\Parameter(
-     *        name="currentboutique",
-     *        in="header",
-     *        required=true,
-     *        description="ID ou code de la boutique courante",
-     *        @OA\Schema(type="string")
-     *     ),
-     *     @OA\Parameter(
      *        name="id",
      *        in="path",
      *        required=true,
@@ -1084,13 +537,6 @@ class DocumentationController extends Controller
      *    tags={"Produit"},
      *    summary="Recuperer l'image d'un produit",
      *    description="Recuperer l'image d'un produit",
-     *    @OA\Parameter(
-     *       name="currentboutique",
-     *       in="header",
-     *       required=true,
-     *       description="ID ou code de la boutique courante",
-     *       @OA\Schema(type="string")
-     *    ),
      *    @OA\Parameter(
      *       name="name",
      *       in="path",
@@ -1112,13 +558,6 @@ class DocumentationController extends Controller
      *    tags={"Produit"},
      *    summary="Supprimer une image d'un produit",
      *    description="Supprimer une image d'un produit ",
-     *    @OA\Parameter(
-     *        name="currentboutique",
-     *        in="header",
-     *        required=true,
-     *        description="ID ou code de la boutique courante",
-     *        @OA\Schema(type="string")
-     *    ),
      *    @OA\Parameter(
      *        name="id",
      *        in="path",
@@ -1146,13 +585,6 @@ class DocumentationController extends Controller
      *    tags={"Produit"},
      *    summary="Ajoute des images a un produit",
      *    description="Ajoute des images d'un produit ",
-     *    @OA\Parameter(
-     *        name="currentboutique",
-     *        in="header",
-     *        required=true,
-     *        description="ID ou code de la boutique courante",
-     *        @OA\Schema(type="string")
-     *    ),
      *    @OA\Parameter(
      *        name="id",
      *        in="path",
