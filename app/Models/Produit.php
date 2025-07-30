@@ -14,7 +14,6 @@ class Produit extends Model
         'prixVenteDetails',
         'prixVenteEngros',
         'quantite',
-        'id_boutique',
         'id_categorie',
     ];
     protected $table = 'produits';
@@ -23,10 +22,6 @@ class Produit extends Model
     public function images()
     {
         return $this->hasMany(ProduitImage::class, 'id_produit', 'id');
-    }
-    public function boutique()
-    {
-        return $this->belongsTo(Boutique::class, 'id_boutique', 'id');
     }
     public function categorie()
     {

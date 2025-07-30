@@ -25,8 +25,4 @@ class Contact extends Model
     {
         return $this->hasMany(User::class, 'id_contact');
     }
-    public function boutique()
-    {
-        return $this->hasMany(Boutique::class, 'id_contact');
-    }
 }

@@ -17,10 +17,6 @@ class Vente extends Model
      protected $primaryKey = 'id';
     public $timestamps = true;
 
-    public function boutique()
-    {
-        return $this->belongsTo(Boutique::class, 'id_boutique', 'id');
-    }
     public function client()
     {
         return $this->belongsTo(Client::class, 'id_client', 'id');
