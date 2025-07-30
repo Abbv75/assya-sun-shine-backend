@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class CategorieController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $boutique = $request->attributes->get('currentBoutique');
-
-            return Categorie::where('id_boutique', $boutique->id)->get();
+            return Categorie::all();
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),

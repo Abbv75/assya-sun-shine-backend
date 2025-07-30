@@ -1,14 +1,9 @@
 <?php
 
-use App\Http\Controllers\BoutiqueController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\TypeAbonnementController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\VenteController;
-use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function () {
@@ -24,7 +19,7 @@ Route::prefix('/roles')->group(function () {
     Route::get('/', [RoleController::class, 'index']);
 });
 
-Route::prefix('/categorie')->middleware('check.boutique')->group(function () {
+Route::prefix('/categories')->group(function () {
     Route::get('/', [CategorieController::class, "index"]);
     Route::post('/', [CategorieController::class, "store"]);
     Route::put('/{id}', [CategorieController::class, "update"]);
