@@ -161,40 +161,18 @@ class ProduitController extends Controller
         }
     }
 
-    public function deleteImage(Request $request, $id)
+    public function deleteImage($id)
     {
         try {
-            $currentBoutique = $request->attributes->get('currentBoutique');
-
-            $produit = Produit::where('id', $id)
-                ->where('id_boutique', $currentBoutique->id)
-                ->first();
-            if (!$produit) {
-                return response()->json([
-                    'message' => 'Produit non trouvé'
-                ], 404);
-            }
-            $validator = Validator::make($request->all(), [
-                'id_image' => 'required',
-            ]);
-            if ($validator->fails()) {
-                return response()->json([
-                    'message' => 'Erreur de validation des champs',
-                    'errors' => $validator->errors(),
-                ], 422);
-            }
-
-            $image = ProduitImage::find($request->id_image);
+            $image = ProduitImage::find($id);
             if (!$image) {
                 return response()->json([
                     'message' => 'Image non trouvée'
                 ], 404);
             }
-            if ($image) {
-                $image->delete();
-            }
+            $image->delete();
 
-            return response()->json(['message' => 'Image supprimée avec succès'], 200);
+            return ['message' => 'Image supprimée avec succès'];
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),
@@ -206,11 +184,7 @@ class ProduitController extends Controller
     public function addImage(Request $request, $id)
     {
         try {
-            $currentBoutique = $request->attributes->get('currentBoutique');
-
-            $produit = Produit::where('id', $id)
-                ->where('id_boutique', $currentBoutique->id)
-                ->first();
+            $produit = Produit::where('id', $id)->first();
 
             if (!$produit) {
                 return response()->json([
