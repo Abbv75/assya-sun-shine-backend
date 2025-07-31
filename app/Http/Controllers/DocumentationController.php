@@ -416,7 +416,7 @@ class DocumentationController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/produit",
+     *     path="/api/produits",
      *     tags={"Produit"},
      *     summary="recuperer tous les produits",
      *     description="Recuperer tous les types de produit",
@@ -432,7 +432,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Get(
-     *   path="/api/produit/{id}",
+     *   path="/api/produits/{id}",
      *   tags={"Produit"},
      *   summary="recuperer un produit",
      *   description="Recuperer un produit",
@@ -451,7 +451,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Post(
-     *    path="/api/produit",
+     *    path="/api/produits",
      *    tags={"Produit"},
      *    summary="Créer un produit",
      *    description="Créer un produit",
@@ -480,7 +480,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Put(
-     *      path="/api/produit/{id}",
+     *      path="/api/produits/{id}",
      *      tags={"Produit"},
      *      summary="Modifier un produit",
      *      description="Modifier un produit",
@@ -515,7 +515,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Delete(
-     *     path="/api/produit/{id}",
+     *     path="/api/produits/{id}",
      *     tags={"Produit"},
      *     summary="Supprimer un produit",
      *     description="Supprimer un produit",
@@ -533,7 +533,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Get(
-     *    path="/api/produit/image/{name}",
+     *    path="/api/produits/image/{name}",
      *    tags={"Produit"},
      *    summary="Recuperer l'image d'un produit",
      *    description="Recuperer l'image d'un produit",
@@ -554,7 +554,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Delete(
-     *    path="/api/produit/image/{id}",
+     *    path="/api/produits/image/{id}",
      *    tags={"Produit"},
      *    summary="Supprimer une image d'un produit",
      *    description="Supprimer une image d'un produit ",
@@ -581,7 +581,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Post(
-     *    path="/api/produit/image/{id}",
+     *    path="/api/produits/image/{id}",
      *    tags={"Produit"},
      *    summary="Ajoute des images a un produit",
      *    description="Ajoute des images d'un produit ",

@@ -442,7 +442,7 @@
                 }
             }
         },
-        "/api/produit": {
+        "/api/produits": {
             "get": {
                 "tags": [
                     "Produit"
@@ -472,7 +472,7 @@
                 ],
                 "summary": "Créer un produit",
                 "description": "Créer un produit",
-                "operationId": "ab6fb19db48e7b6c08fe603488e218fa",
+                "operationId": "bbdc8da9dc07034a6c9dcd560c08ad1b",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -534,14 +534,14 @@
                 }
             }
         },
-        "/api/produit/{id}": {
+        "/api/produits/{id}": {
             "get": {
                 "tags": [
                     "Produit"
                 ],
                 "summary": "recuperer un produit",
                 "description": "Recuperer un produit",
-                "operationId": "8b44f7cd27d12ab253d86cb161c4358e",
+                "operationId": "da0a77499ae5737c461306c0c836eafc",
                 "parameters": [
                     {
                         "name": "id",
@@ -572,7 +572,7 @@
                 ],
                 "summary": "Modifier un produit",
                 "description": "Modifier un produit",
-                "operationId": "feff7ae293aa8b791ba9128f01842bad",
+                "operationId": "53e84a480c3d8c3fca3b540b688442a8",
                 "parameters": [
                     {
                         "name": "id",
@@ -643,7 +643,7 @@
                 ],
                 "summary": "Supprimer un produit",
                 "description": "Supprimer un produit",
-                "operationId": "13f96b01a711a39641019e5ea9cec893",
+                "operationId": "4250ce1c05263c646b95afbe6676d113",
                 "parameters": [
                     {
                         "name": "id",
@@ -662,14 +662,14 @@
                 }
             }
         },
-        "/api/produit/image/{name}": {
+        "/api/produits/image/{name}": {
             "get": {
                 "tags": [
                     "Produit"
                 ],
                 "summary": "Recuperer l'image d'un produit",
                 "description": "Recuperer l'image d'un produit",
-                "operationId": "073ab35ec7711c7302b0cd3614735d0f",
+                "operationId": "03b6a0ade07af2fd2cb250778c681c3a",
                 "parameters": [
                     {
                         "name": "name",
@@ -691,14 +691,14 @@
                 }
             }
         },
-        "/api/produit/image/{id}": {
+        "/api/produits/image/{id}": {
             "post": {
                 "tags": [
                     "Produit"
                 ],
                 "summary": "Ajoute des images a un produit",
                 "description": "Ajoute des images d'un produit ",
-                "operationId": "b5e1cac7cc649c58d6d06a8b3810c484",
+                "operationId": "2e81d56552dd658f0ae5df288eef7564",
                 "parameters": [
                     {
                         "name": "id",
@@ -738,7 +738,7 @@
                 ],
                 "summary": "Supprimer une image d'un produit",
                 "description": "Supprimer une image d'un produit ",
-                "operationId": "c7db8e79eed7292afe7f5b104524f4a3",
+                "operationId": "a89ad7039d0695634d6d77c37957c97f",
                 "parameters": [
                     {
                         "name": "id",
