@@ -13,12 +13,10 @@ use Illuminate\Support\Facades\Validator;
 
 class VenteController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         try {
-            $boutique = $request->attributes->get('currentBoutique');
-
-            return $boutique->ventes()->with(['client'])->get();
+            return Vente::with('client', 'produits')->get();
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),
@@ -54,12 +52,9 @@ class VenteController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'client' => 'required|array',
-            'client.nomComplet' => 'required|string|max:255',
-            'client.telephone' => 'required|string|max:20',
-            'client.email' => 'nullable|email',
-            'client.adresse' => 'nullable|string',
-            'client.whatsapp' => 'nullable|string',
+            'client' => 'required',
+            'client.nomComplet' => 'required',
+            'client.telephone' => 'required',
             'produitsList' => 'required|array|min:1',
             'produitsList.*.id' => 'required|integer|exists:produits,id',
             'produitsList.*.quantite' => 'required|integer|min:1',
@@ -76,8 +71,6 @@ class VenteController extends Controller
 
         try {
             $vente = DB::transaction(function () use ($request) {
-                $boutique = $request->attributes->get("currentBoutique");
-
                 $clientData = $request->input('client');
 
                 $contact = Contact::create([
@@ -94,7 +87,6 @@ class VenteController extends Controller
 
                 $vente = Vente::create([
                     'montant' => 0,
-                    'id_boutique' => $boutique->id,
                     'id_client' => $client->id
                 ]);
 
@@ -138,11 +130,10 @@ class VenteController extends Controller
         }
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         try {
-            $boutique = $request->attributes->get("currentBoutique");
-            $vente = Vente::find($id)->where('id_boutique', $boutique->id)->first();
+            $vente = Vente::find($id)->first();
 
             if (!$vente) {
                 return response()->json(["message" => "Vente introuvable"], 404);

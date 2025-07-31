@@ -159,7 +159,7 @@ class DocumentationController extends Controller
      *    @OA\Property(property="id_client", type="integer"),
      *    @OA\Property(property="boutique", ref="#/components/schemas/Boutique"),
      *    @OA\Property(property="client", ref="#/components/schemas/Client"),
-     *    @OA\Property(property="venteProduits", type="array", @OA\Items(ref="#/components/schemas/VenteProduit"))
+     *    @OA\Property(property="produits", type="array", @OA\Items(ref="#/components/schemas/Produit"))
      * )
      */
     public function schema() {}
@@ -611,18 +611,11 @@ class DocumentationController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/vente",
+     *     path="/api/ventes",
      *     tags={"Vente"},
      *     summary="recuperer toutes les ventes",
      *     description="Recuperer tous les ventes d'une boutique",
      *     operationId="getAllVente",
-     *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
      *     @OA\Response(
      *        response=200,
      *        description="List des ventes",
@@ -634,7 +627,7 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Get(
-     *     path="/api/vente/{id}",
+     *     path="/api/ventes/{id}",
      *     tags={"Vente"},
      *     summary="recuperer une vente",
      *     description="Recuperer une ventes d'une boutique avec les produits et le client",
@@ -661,8 +654,8 @@ class DocumentationController extends Controller
      * ) 
      * 
      * @OA\Post(
-     *     path="/api/vente",
-     *     tags={"Ventes"},
+     *     path="/api/ventes",
+     *     tags={"Vente"},
      *     summary="Créer une nouvelle vente",
      *     description="Crée une nouvelle vente avec les informations du client et la liste des produits.",
      *     @OA\Parameter(
@@ -737,46 +730,39 @@ class DocumentationController extends Controller
      * )
      * 
      * @OA\Delete(
-     * path="/api/vente/{id}",
-     * tags={"Ventes"},
-     * summary="Supprimer une vente",
-     * description="Supprime une vente spécifique en s'assurant qu'elle appartient à la boutique de l'utilisateur.",
-     * @OA\Parameter(
-     * name="currentboutique",
-     * in="header",
-     * required=true,
-     * description="ID ou code de la boutique courante pour vérifier les autorisations.",
-     * @OA\Schema(type="string")
-     * ),
-     * @OA\Parameter(
-     * name="id",
-     * in="path",
-     * required=true,
-     * description="ID numérique de la vente à supprimer.",
-     * @OA\Schema(type="integer")
-     * ),
-     * @OA\Response(
-     * response=200,
-     * description="Opération réussie",
-     * @OA\JsonContent(
-     * @OA\Property(property="message", type="string", example="Vente supprimer avec success")
-     * )
-     * ),
-     * @OA\Response(
-     * response=404,
-     * description="Ressource non trouvée",
-     * @OA\JsonContent(
-     * @OA\Property(property="message", type="string", example="Vente introuvable")
-     * )
-     * ),
-     * @OA\Response(
-     * response=500,
-     * description="Erreur interne du serveur",
-     * @OA\JsonContent(
-     * @OA\Property(property="message", type="string", example="Une erreur est survenue lors de la suppresion de la vente."),
-     * @OA\Property(property="error", type="string")
-     * )
-     * )
+     *      path="/api/ventes/{id}",
+     *      tags={"Vente"},
+     *      summary="Supprimer une vente",
+     *      description="Supprime une vente spécifique en s'assurant qu'elle appartient à la boutique de l'utilisateur.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          description="ID numérique de la vente à supprimer.",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Opération réussie",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Vente supprimer avec success")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Ressource non trouvée",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Vente introuvable")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Erreur interne du serveur",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Une erreur est survenue lors de la suppresion de la vente."),
+     *              @OA\Property(property="error", type="string")
+     *          )
+     *      )
      * )
      */
     public function vente() {}

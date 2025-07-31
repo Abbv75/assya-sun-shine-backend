@@ -14,16 +14,20 @@ class Vente extends Model
         'id_client',
     ];
     protected $table = 'ventes';
-     protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     public $timestamps = true;
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s'
+    ];
 
     public function client()
     {
         return $this->belongsTo(Client::class, 'id_client', 'id');
     }
-    public function venteProduits()
+    public function produits()
     {
-        return $this->hasMany(VenteProduit::class, 'id_vente', 'id');
+        return $this->belongsToMany(Produit::class, 'vente_produits', 'id_vente', 'id_produit');
     }
-
 }

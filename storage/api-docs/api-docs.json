@@ -773,7 +773,7 @@
                 }
             }
         },
-        "/api/vente": {
+        "/api/ventes": {
             "get": {
                 "tags": [
                     "Vente"
@@ -781,17 +781,6 @@
                 "summary": "recuperer toutes les ventes",
                 "description": "Recuperer tous les ventes d'une boutique",
                 "operationId": "getAllVente",
-                "parameters": [
-                    {
-                        "name": "currentboutique",
-                        "in": "header",
-                        "description": "ID ou code de la boutique courante",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "List des ventes",
@@ -810,11 +799,11 @@
             },
             "post": {
                 "tags": [
-                    "Ventes"
+                    "Vente"
                 ],
                 "summary": "Créer une nouvelle vente",
                 "description": "Crée une nouvelle vente avec les informations du client et la liste des produits.",
-                "operationId": "977ad6af81fdb281650930165142dae8",
+                "operationId": "5f5d14db0fc14597f9f25b5e97a7dc47",
                 "parameters": [
                     {
                         "name": "currentboutique",
@@ -957,7 +946,7 @@
                 }
             }
         },
-        "/api/vente/{id}": {
+        "/api/ventes/{id}": {
             "get": {
                 "tags": [
                     "Vente"
@@ -1000,11 +989,11 @@
             },
             "delete": {
                 "tags": [
-                    "Ventes"
+                    "Vente"
                 ],
                 "summary": "Supprimer une vente",
                 "description": "Supprime une vente spécifique en s'assurant qu'elle appartient à la boutique de l'utilisateur.",
-                "operationId": "9d2c624ca4295d56e21f33fef4486c12",
+                "operationId": "a4d6e95806fe1c751233b56fa2a6ee07",
                 "parameters": [
                     {
                         "name": "currentboutique",
@@ -1433,10 +1422,10 @@
                     "client": {
                         "$ref": "#/components/schemas/Client"
                     },
-                    "venteProduits": {
+                    "produits": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/VenteProduit"
+                            "$ref": "#/components/schemas/Produit"
                         }
                     }
                 },
@@ -1464,10 +1453,6 @@
         {
             "name": "Vente",
             "description": "Vente"
-        },
-        {
-            "name": "Ventes",
-            "description": "Ventes"
         }
     ]
 }

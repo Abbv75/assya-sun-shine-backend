@@ -4,6 +4,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VenteController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/users')->group(function () {
@@ -36,3 +37,11 @@ Route::prefix('/produits')->group(function () {
     Route::post('image/{id}', [ProduitController::class, "addImage"]);
     Route::delete('image/{id}', [ProduitController::class, "deleteImage"]);
 });
+
+Route::prefix('/ventes')->group(function () {
+    Route::get('/', [VenteController::class, "index"]);
+    Route::post('/', [VenteController::class, "store"]);
+    Route::get('/{id}', [VenteController::class, "show"]);
+    Route::delete('/{id}', [VenteController::class, "delete"]);
+});
+
