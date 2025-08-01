@@ -36,7 +36,7 @@ class VenteController extends Controller
                 ], 404);
             }
 
-            return $vente->load('client', 'produits.images');
+            return $vente->load('client.contact', 'produits.images');
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),
