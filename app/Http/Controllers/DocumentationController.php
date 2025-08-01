@@ -633,13 +633,6 @@ class DocumentationController extends Controller
      *     description="Recuperer une ventes d'une boutique avec les produits et le client",
      *     operationId="getVente",
      *     @OA\Parameter(
-     *         name="currentboutique",
-     *         in="header",
-     *         required=true,
-     *         description="ID ou code de la boutique courante",
-     *         @OA\Schema(type="string")
-     *     ),
-     *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,

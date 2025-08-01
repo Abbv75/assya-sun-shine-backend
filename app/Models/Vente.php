@@ -28,6 +28,7 @@ class Vente extends Model
     }
     public function produits()
     {
-        return $this->belongsToMany(Produit::class, 'vente_produits', 'id_vente', 'id_produit');
+        return $this->belongsToMany(Produit::class, 'vente_produits', 'id_vente', 'id_produit')
+            ->withPivot('quantite', 'montant');
     }
 }

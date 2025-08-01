@@ -25,14 +25,10 @@ class VenteController extends Controller
         }
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
         try {
-            $boutique = $request->attributes->get('currentBoutique');
-            $vente = $boutique->ventes()
-                ->with(['client', 'venteProduits.produit'])
-                ->where('id', $id)
-                ->first();
+            $vente = Vente::find($id);
 
             if (!$vente) {
                 return response()->json([
@@ -40,7 +36,7 @@ class VenteController extends Controller
                 ], 404);
             }
 
-            return $vente;
+            return $vente->load('client', 'produits.images');
         } catch (\Throwable $th) {
             return response()->json([
                 "error" => $th->getMessage(),
